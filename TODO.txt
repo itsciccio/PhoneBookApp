@@ -1,0 +1,23 @@
+Phone book app
+
+1) People objects
+
+[DONE] preset uuid, name, surname, phone, locality
+-> save to config.ini
+[DONE] load from config.ini 
+
+2) simple ui
+
+[DONE] list of cards, each containing details on the person
+[DONE] ability to filter by locality, name & surname (alphabetical order)
+find user by phone number
+
+3) interactions with phonebook
+
+[DONE] add new user -> formik
+[DONE] remove user
+[DONE] update details of user
+-> redux pattern
+[DONE]-> form validation
+-> create different sublists of users: family, friends, colleagues
+
