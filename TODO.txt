@@ -17,7 +17,7 @@ find user by phone number
 [DONE] add new user -> formik
 [DONE] remove user
 [DONE] update details of user
--> redux pattern
-[DONE]-> form validation
--> create different sublists of users: family, friends, colleagues
+[DONE] redux pattern
+[DONE] form validation
+X -> create different sublists of users: family, friends, colleagues
 
