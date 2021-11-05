@@ -1,10 +1,12 @@
 import React from "react";
 import "../index.css";
-import { Typography } from "@material-ui/core";
+import { Typography, Button } from "@material-ui/core";
 import ContactsList from "./contactsList";
 import { connect } from "react-redux";
 import addContactForm from "./forms/addContactForm";
 import topMenu from "./general/topMenu";
+import { store } from "../redux/store/store";
+import { saveAllContactsToFile } from "../redux/actions/contactActions";
 
 class Contacts extends React.Component {
   render() {
@@ -18,6 +20,9 @@ class Contacts extends React.Component {
           <ContactsList />
         </div>
         {addContactForm()}
+        <Button onClick={() => store.dispatch(saveAllContactsToFile())}>
+          Save all to file
+        </Button>
       </div>
     );
   }

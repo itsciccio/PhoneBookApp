@@ -6,16 +6,15 @@ import {
   UPDATE_CONTACT,
   TOGGLE_CONTACT_OPTION_PANE,
   TOGGLE_CONTACT_EDIT_FORM,
+  SAVE_ALL_CONTACTS,
 } from "../actions/types";
-import LoadPersonsFromConfig from "../../utils/configuration";
+import { LoadConfig, UpdateConfig } from "../../utils/configuration";
 import { v4 as uuidv4 } from "uuid";
 
 function initContactList() {
   var loaded_contacts = [];
-  LoadPersonsFromConfig().then((value) => {
+  LoadConfig().then((value) => {
     for (let i = 0; i < value.length; i++) {
-      console.log(value[i].uuid);
-      console.log(value[i].name);
       loaded_contacts.push({
         uuid: value[i].uuid,
         name: value[i].name,
@@ -167,6 +166,7 @@ function contactReducer(state = contactsState, action) {
         if (itemA > itemB) return sort_value_temp;
         return 0;
       });
+
       return {
         ...state,
         list_of_persons: persons_to_sort_temp,
@@ -210,16 +210,15 @@ function contactReducer(state = contactsState, action) {
         ...state,
         contact_edit_form_id: id_edit_form_open,
       };
-
-      // case LOAD_CONTACTS_CONFIG:
-      //   const loaded_data = await LoadPersonsFromConfig();
-      //   console.log(typeof state.list_of_persons);
-      //   console.log(typeof loaded_data);
-      //   return {
-      //     ...state,
-      //     list_of_persons: loaded_data,
-      //   };
     }
+
+    case SAVE_ALL_CONTACTS:
+      UpdateConfig(state.list_of_persons);
+
+      return {
+        state,
+      };
+
     default: {
       return state;
     }

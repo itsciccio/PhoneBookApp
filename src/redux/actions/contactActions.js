@@ -6,6 +6,7 @@ import {
   TOGGLE_CONTACT_OPTION_PANE,
   TOGGLE_CONTACT_EDIT_FORM,
   REFRESH_CONTACT_LIST,
+  SAVE_ALL_CONTACTS,
 } from "./types";
 
 export const addContact = (payload) => {
@@ -54,5 +55,11 @@ export const openContactEditForm = (id) => {
 export const refreshContactList = () => {
   return {
     type: REFRESH_CONTACT_LIST,
+  };
+};
+
+export const saveAllContactsToFile = () => {
+  return {
+    type: SAVE_ALL_CONTACTS,
   };
 };

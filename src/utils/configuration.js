@@ -5,10 +5,12 @@ function fetchData(url) {
   return axios.get(url);
 }
 
-// export async function LoadConfig() {
-async function LoadConfig() {
+function sendData(url, data) {
+  return axios.post(url, { text: data }, {});
+}
+
+export async function LoadConfig() {
   const response = await fetchData("/get_config");
-  // let json_format = JSON.parse(JSON.stringify(resp.data));
   let ini_form = ini.parse(response.data);
 
   var list_of_persons = [];
@@ -34,4 +36,32 @@ async function LoadConfig() {
   return list_of_persons;
 }
 
-export default LoadConfig;
+export async function UpdateConfig(contact_list) {
+  var text_to_save = "";
+
+  for (let i = 0; i < contact_list.length; i++) {
+    text_to_save =
+      text_to_save +
+      "[" +
+      contact_list[i].uuid +
+      "]" +
+      "\nname=" +
+      contact_list[i].name +
+      "\nsurname=" +
+      contact_list[i].surname +
+      "\nphone_number=" +
+      contact_list[i].phone_number +
+      "\nlocality=" +
+      contact_list[i].locality;
+    text_to_save = text_to_save + "\n\n";
+  }
+  const resp = await sendData("/update_config", text_to_save);
+  return;
+}
+
+const fnsToExport = {
+  LoadConfig,
+  UpdateConfig,
+};
+
+export default fnsToExport;

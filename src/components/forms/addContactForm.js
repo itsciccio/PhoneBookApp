@@ -4,10 +4,7 @@ import { Formik, Form, useField } from "formik";
 import { TextField, Button, Select, MenuItem } from "@material-ui/core";
 import * as yup from "yup";
 import { store } from "../../redux/store/store";
-import {
-  addContact,
-  refreshContactList,
-} from "../../redux/actions/contactActions";
+import { addContact } from "../../redux/actions/contactActions";
 
 export const addContactForm = () => {
   const CustomTextField = (props) => {
@@ -49,7 +46,6 @@ export const addContactForm = () => {
             locality: data.locality,
           };
           store.dispatch(addContact(payload));
-          store.dispatch(refreshContactList());
         }}
       >
         {({ values, handleChange, handleBlur, handleSubmit }) => (

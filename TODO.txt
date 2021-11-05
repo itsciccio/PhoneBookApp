@@ -3,7 +3,7 @@ Phone book app
 1) People objects
 
 [DONE] preset uuid, name, surname, phone, locality
--> save to config.ini
+[DONE] save to config.ini
 [DONE] load from config.ini 
 
 2) simple ui
